@@ -1,0 +1,122 @@
+import tkinter as tk
+from tkinter import Toplevel
+import math
+
+ventana = tk.Tk()
+ventana.title("Figuras")
+ventana.geometry("500x180")
+ventana.config(bg="#f0f0f0")
+ventana.resizable(False, False)
+
+color_boton = "#dbeeff"
+
+frame = tk.Frame(ventana, bg="#f0f0f0")
+frame.pack(expand=True)
+
+def abrir_cilindro():
+
+    v1 = Toplevel()
+    v1.title("Cilindro")
+    v1.geometry("420x300")
+    v1.config(bg="#f0f0f0")
+    v1.resizable(False, False)
+
+    tk.Label(v1, text="Radio (cms):", font=("Arial", 12, "bold"), bg="#f0f0f0").place(x=40, y=40)
+
+    radio = tk.Entry(v1, font=("Arial", 12), width=18)
+    radio.place(x=200, y=40)
+
+    tk.Label(v1, text="Altura (cms):", font=("Arial", 12, "bold"), bg="#f0f0f0").place(x=40, y=90)
+
+    altura = tk.Entry(v1, font=("Arial", 12), width=18)
+    altura.place(x=200, y=90)
+
+    resultado = tk.Label(v1, text="", font=("Arial", 12, "bold"), justify="left", bg="#f0f0f0")
+    resultado.place(x=40, y=210)
+
+    def calcular():
+
+        r = float(radio.get())
+        h = float(altura.get())
+
+        volumen = math.pi * r**2 * h
+        superficie = 2 * math.pi * r * (r + h)
+
+        resultado.config(text=f"Volumen (cm3): {volumen:.2f}"f"\n\nSuperficie (cm2): {superficie:.2f}")
+
+    tk.Button(v1, text="Calcular", font=("Arial", 12, "bold"), bg=color_boton, width=18, command=calcular).place(x=135, y=145)
+
+def abrir_esfera():
+
+    v2 = Toplevel()
+    v2.title("Esfera")
+    v2.geometry("420x280")
+    v2.config(bg="#f0f0f0")
+    v2.resizable(False, False)
+
+    tk.Label(v2,text="Radio (cms):", font=("Arial", 12, "bold"), bg="#f0f0f0").place(x=40, y=50)
+
+    radio = tk.Entry(v2, font=("Arial", 12), width=18)
+    radio.place(x=200, y=50)
+
+    resultado = tk.Label(v2, text="", font=("Arial", 12, "bold"), justify="left", bg="#f0f0f0")
+    resultado.place(x=40, y=180)
+
+    def calcular():
+
+        r = float(radio.get())
+
+        volumen = (4/3) * math.pi * r**3
+        superficie = 4 * math.pi * r**2
+
+        resultado.config(text=f"Volumen (cm3): {volumen:.2f}"f"\n\nSuperficie (cm2): {superficie:.2f}")
+
+    tk.Button(v2, text="Calcular", font=("Arial", 12, "bold"), bg=color_boton, width=18, command=calcular).place(x=135, y=100)
+
+def abrir_piramide():
+
+    v3 = Toplevel()
+    v3.title("Pirámide")
+    v3.geometry("420x340")
+    v3.config(bg="#f0f0f0")
+    v3.resizable(False, False)
+
+    tk.Label(v3, text="Base (cms):", font=("Arial", 12, "bold"), bg="#f0f0f0").place(x=40, y=40)
+
+    base = tk.Entry(v3, font=("Arial", 12), width=18)
+    base.place(x=200, y=40)
+
+    tk.Label(v3, text="Altura (cms):", font=("Arial", 12, "bold"), bg="#f0f0f0").place(x=40, y=90)
+
+    altura = tk.Entry(v3, font=("Arial", 12), width=18)
+    altura.place(x=200, y=90)
+
+    tk.Label(v3, text="Apotema (cms):", font=("Arial", 12, "bold"), bg="#f0f0f0").place(x=40, y=140)
+
+    apotema = tk.Entry(v3, font=("Arial", 12), width=18)
+    apotema.place(x=200, y=140)
+
+    resultado = tk.Label(v3, text="", font=("Arial", 12, "bold"), justify="left", bg="#f0f0f0")
+    resultado.place(x=40, y=260)
+
+    def calcular():
+
+        b = float(base.get())
+        h = float(altura.get())
+        a = float(apotema.get())
+
+        volumen = (b**2 * h) / 3
+        superficie = b**2 + (2 * b * a)
+
+        resultado.config(text=f"Volumen (cm3): {volumen:.2f}"f"\n\nSuperficie (cm2): {superficie:.2f}")
+
+    tk.Button(v3, text="Calcular", font=("Arial", 12, "bold"), bg=color_boton, width=18, command=calcular).place(x=135, y=190)
+tk.Button(frame, text="Cilindro", font=("Arial", 12, "bold"), bg=color_boton, width=12, command=abrir_cilindro).grid(row=0, column=0, padx=15)
+
+tk.Button(frame, text="Esfera", font=("Arial", 12, "bold"), bg=color_boton, width=12, command=abrir_esfera).grid(row=0, column=1, padx=15)
+
+tk.Button(frame, text="Pirámide", font=("Arial", 12, "bold"), bg=color_boton, width=12, command=abrir_piramide).grid(row=0, column=2, padx=15)
+
+ventana.mainloop()
+
+        
