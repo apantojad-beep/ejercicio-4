@@ -4,8 +4,6 @@ import os
 
 ARCHIVO = "friendsContact.txt"
 
-#------------------ FUNCIONES ------------------#
-
 def crear():
 
     nombre = txtNombre.get().strip()
@@ -15,11 +13,9 @@ def crear():
         messagebox.showwarning("Advertencia", "Complete todos los campos.")
         return
 
-    # Crear el archivo si no existe
     if not os.path.exists(ARCHIVO):
         open(ARCHIVO, "w").close()
 
-    # Verificar si el nombre ya existe
     with open(ARCHIVO, "r") as archivo:
         for linea in archivo:
             datos = linea.strip().split(";")
@@ -28,7 +24,6 @@ def crear():
                                     f"The friend {nombre} already exists.")
                 return
 
-    # Guardar nuevo registro
     with open(ARCHIVO, "a") as archivo:
         archivo.write(f"{nombre};{numero}\n")
 
@@ -166,17 +161,12 @@ def limpiar():
 def salir():
     ventana.destroy()
 
-
-#------------------ VENTANA ------------------#
-
 ventana = tk.Tk()
 ventana.title("Friends")
 ventana.geometry("620x320")
 ventana.configure(bg="#d9ecff")
 ventana.resizable(False, False)
 
-
-# Marco
 
 frame = tk.Frame(ventana, padx=20, pady=20)
 frame.pack(fill="both", expand=True)
@@ -190,7 +180,6 @@ titulo = tk.Label(
 titulo.grid(row=0, column=0, columnspan=4, pady=10)
 
 
-# Nombre
 
 lblNombre = tk.Label(frame, text="Name", font=("Arial",11))
 lblNombre.grid(row=1,column=0,pady=10,sticky="w")
@@ -199,7 +188,6 @@ txtNombre = tk.Entry(frame,width=40,font=("Arial",11))
 txtNombre.grid(row=1,column=1,columnspan=4,padx=10)
 
 
-# Número
 
 lblNumero = tk.Label(frame,text="Number",font=("Arial",11))
 lblNumero.grid(row=2,column=0,pady=10,sticky="w")
@@ -208,7 +196,7 @@ txtNumero = tk.Entry(frame,width=40,font=("Arial",11))
 txtNumero.grid(row=2,column=1,columnspan=4,padx=10)
 
 
-# Botones CRUD
+
 
 btnCrear = tk.Button(frame,text="Create",width=10,command=crear)
 btnCrear.grid(row=3,column=0,pady=15)
@@ -223,7 +211,7 @@ btnEliminar = tk.Button(frame,text="Delete",width=10,command=eliminar)
 btnEliminar.grid(row=3,column=3)
 
 
-# Botones inferiores
+
 
 btnLimpiar = tk.Button(frame,text="Clear",width=10,command=limpiar)
 btnLimpiar.grid(row=4,column=1,pady=15)
